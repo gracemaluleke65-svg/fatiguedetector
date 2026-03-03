@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real-time driver fatigue detection using computer vision">
+    <title>Smart Fatigue Detector v2.0</title>
+
+    <!-- Bootstrap 5 + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --success: #198754;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #0dcaf0;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 1.5rem 0;
+        }
+
+        .slide-up {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08) !important;
+        }
+
+        .btn { transition: all 0.2s ease; }
+        .btn:hover { transform: scale(1.02); }
+
+        .good { color: var(--success); font-weight: 600; }
+        .blink { color: var(--info); font-weight: 600; }
+        .warning { color: #fd7e14; font-weight: 600; }
+        .danger { color: #e67e22; font-weight: 600; }
+        .alarm { color: var(--danger); font-weight: 700; animation: pulse 0.5s infinite; }
+        .ready { color: var(--info); font-weight: 600; }
+        .monitoring { color: var(--success); font-weight: 600; }
+        .error { color: var(--danger); font-weight: 600; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .video-wrapper {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        #videoContainer {
+            display: none;
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        #video {
+            width: 100%;
+            height: auto;
+            max-height: 60vh;
+            object-fit: contain;
+            display: block;
+            border: 3px solid var(--primary);
+            border-radius: 0.75rem;
+            transform: scaleX(-1);
+            background: #000;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        .dot-green { background: var(--success); box-shadow: 0 0 8px var(--success); }
+        .dot-blue { background: var(--info); }
+        .dot-orange { background: #fd7e14; }
+        .dot-red { background: var(--danger); box-shadow: 0 0 8px var(--danger); }
+
+        #alarmOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(220, 53, 69, 0.95);
+            display: none;
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(8px);
+            color: white;
+        }
+        #alarmOverlay.active {
+            display: flex;
+            animation: alarmFlash 0.5s infinite;
+        }
+        @keyframes alarmFlash {
+            0%, 100% { background: rgba(220, 53, 69, 0.95); }
+            50% { background: rgba(200, 35, 51, 0.98); }
+        }
+        .alarm-icon { font-size: 5rem; margin-bottom: 1rem; }
+        .alarm-text { font-size: 3.5rem; font-weight: 800; letter-spacing: 4px; }
+        .alarm-subtext { font-size: 1.8rem; opacity: 0.9; }
+
+        @media (max-width: 576px) {
+            .alarm-text { font-size: 2.2rem; }
+            .alarm-subtext { font-size: 1.2rem; }
+        }
+
+        .dev-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+        .dev-img:hover { transform: scale(1.05); }
+
+        .connection-status {
+            font-size: 0.9rem;
+            padding: 0.35rem 1rem;
+            border-radius: 2rem;
+        }
+        .connection-status.connected { background: #d1e7dd; color: #0a3622; }
+        .connection-status.disconnected { background: #f8d7da; color: #58151c; }
+        .connection-status.error { background: #fff3cd; color: #856404; }
+
+        #canvas { display: none; }
+
+        #statsPanel {
+            background: var(--card-bg);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Alarm Overlay -->
+    <div id="alarmOverlay">
+        <div class="alarm-content text-center">
+            <div class="alarm-icon">🚨</div>
+            <div class="alarm-text">WAKE UP!</div>
+            <div class="alarm-subtext">Driver Fatigue Detected</div>
+        </div>
+    </div>
+
+    <!-- Main container -->
+    <div class="container-lg">
+
+        <!-- Header -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 slide-up">
+            <div>
+                <h1 class="display-5 fw-bold" style="color: var(--primary);">
+                    <i class="bi bi-car-front-fill me-2"></i>Smart Fatigue Detector
+                </h1>
+                <p class="text-muted">Real-time eye tracking & AI-powered fatigue prevention</p>
+            </div>
+            <div id="connectionStatus" class="connection-status disconnected fw-semibold">
+                <i class="bi bi-wifi-off me-1"></i> Connecting...
+            </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="row g-3 mb-4 slide-up delay-1">
+            <div class="col-md-6">
+                <button id="startTrip" class="btn btn-primary w-100 py-3 fw-semibold hover-lift">
+                    <i class="bi bi-play-circle-fill me-2"></i>Start Trip
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button id="stopTrip" class="btn btn-outline-danger w-100 py-3 fw-semibold hover-lift" disabled>
+                    <i class="bi bi-stop-circle-fill me-2"></i>End Trip
+                </button>
+            </div>
+        </div>
+
+        <!-- Video Card -->
+        <div class="card border-0 shadow-sm mb-4 slide-up delay-2 hover-lift">
+            <div class="card-body p-3">
+                <div class="video-wrapper">
+                    <div id="videoContainer">
+                        <video id="video" autoplay playsinline muted></video>
+                        <div class="video-overlay">
+                            <i class="bi bi-record-circle text-danger me-1"></i> LIVE
+                        </div>
+                    </div>
+                    <canvas id="canvas"></canvas>
+                </div>
+
+                <!-- Legend -->
+                <div class="d-flex flex-wrap gap-4 mt-3 justify-content-center">
+                    <div><span class="legend-dot dot-green"></span> Awake & Alert</div>
+                    <div><span class="legend-dot dot-blue"></span> Normal blink (<500ms)</div>
+                    <div><span class="legend-dot dot-orange"></span> Warning (0.5-1s)</div>
+                    <div><span class="legend-dot dot-red"></span> Critical (>1s)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Panel -->
+        <div class="card border-0 shadow-sm mb-4 slide-up delay-3">
+            <div class="card-body text-center py-4">
+                <div id="status" class="h4 fw-semibold ready">
+                    <i class="bi bi-camera-video me-2"></i>Ready to start trip
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Panel -->
+        <div id="statsPanel" class="mb-4 slide-up delay-3" style="display: none;"></div>
+
+        <!-- DEVELOPER SECTION -->
+        <div class="card border-0 shadow-sm slide-up delay-4">
+            <div class="card-body p-4">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-3 text-center text-md-start">
+                        <img src="https://shichabonkuna22-star.github.io/portfolio/static/images/Shichabo.png" 
+                             alt="Shichabo Nkuna" 
+                             class="dev-img rounded-circle img-fluid"
+                             onerror="this.src='https://via.placeholder.com/100?text=SN'">
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="fw-bold mb-2">Shichabo Nkuna</h4>
+                        <p class="text-muted mb-2">Software Developer</p>
+                        <p class="mb-3">Passionate about building solutions that make roads safer. This fatigue detector uses Eye Aspect Ratio (EAR) and real-time analytics to prevent drowsy driving.</p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <a href="https://shichabonkuna22-star.github.io/portfolio/" target="_blank" class="text-decoration-none">
+                                <i class="bi bi-briefcase-fill me-1"></i> Portfolio
+                            </a>
+                            <a href="https://www.linkedin.com/in/shichabo-nkuna-7004a2244" target="_blank" class="text-decoration-none">
+                                <i class="bi bi-linkedin me-1"></i> LinkedIn
+                            </a>
+                            <a href="mailto:shichabonkuna22@gmail.com" class="text-decoration-none">
+                                <i class="bi bi-envelope-fill me-1"></i> Email
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-md-end">
+                        <span class="badge bg-light text-dark p-3">
+                            <i class="bi bi-shield-check text-primary fs-4"></i><br>
+                            v2.0
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center text-muted mt-4 small">
+            <i class="bi bi-exclamation-triangle me-1"></i> For research & safety purposes only
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Inline camera.js since external file won't load easily on Render -->
+    <script>
+        // Socket.IO connection with auto-reconnect
+        const socket = io({
+            transports: ['websocket', 'polling'],
+            reconnection: true,
+            reconnectionAttempts: 5,
+            reconnectionDelay: 1000
+        });
+
+        // DOM elements
+        const startBtn = document.getElementById('startTrip');
+        const stopBtn = document.getElementById('stopTrip');
+        const videoContainer = document.getElementById('videoContainer');
+        const video = document.getElementById('video');
+        const statusDiv = document.getElementById('status');
+        const connectionBadge = document.getElementById('connectionStatus');
+        const alarmOverlay = document.getElementById('alarmOverlay');
+        const statsPanel = document.getElementById('statsPanel');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let stream = null;
+        let isMonitoring = false;
+        let frameInterval = null;
+        let tripId = null;
+
+        // Socket event handlers
+        socket.on('connect', () => {
+            console.log('Connected to server');
+            connectionBadge.innerHTML = '<i class="bi bi-wifi me-1"></i> Connected';
+            connectionBadge.className = 'connection-status connected fw-semibold';
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+            connectionBadge.innerHTML = '<i class="bi bi-wifi-off me-1"></i> Disconnected';
+            connectionBadge.className = 'connection-status disconnected fw-semibold';
+            stopMonitoring();
+        });
+
+        socket.on('connected', (data) => {
+            console.log('Server ready:', data);
+        });
+
+        socket.on('trip_started', (data) => {
+            console.log('Trip started:', data);
+            tripId = data.trip_id;
+            statusDiv.innerHTML = '<i class="bi bi-eye-fill me-2 text-success"></i>Monitoring - Awake';
+            statusDiv.className = 'h4 fw-semibold monitoring';
+            startFrameCapture();
+        });
+
+        socket.on('trip_ended', (data) => {
+            console.log('Trip ended:', data);
+            stopMonitoring();
+            statusDiv.innerHTML = '<i class="bi bi-check-circle-fill me-2 text-success"></i>Trip completed';
+            if (data.stats) {
+                displayStats(data.stats);
+            }
+        });
+
+        socket.on('eye_state', (data) => {
+            updateStatus(data);
+            if (data.alarm) {
+                showAlarm();
+            } else {
+                hideAlarm();
+            }
+        });
+
+        socket.on('error', (data) => {
+            console.error('Server error:', data);
+            statusDiv.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2 text-danger"></i>${data.message}`;
+            statusDiv.className = 'h4 fw-semibold error';
+        });
+
+        // Video handling
+        function stopVideoStream() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            video.srcObject = null;
+        }
+
+        async function startCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        width: { ideal: 640 },
+                        height: { ideal: 480 },
+                        facingMode: 'user'
+                    } 
+                });
+                video.srcObject = stream;
+                videoContainer.style.display = 'block';
+                return true;
+            } catch (err) {
+                console.error('Camera error:', err);
+                statusDiv.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2 text-danger"></i>Camera error: ${err.message}`;
+                return false;
+            }
+        }
+
+        function startFrameCapture() {
+            isMonitoring = true;
+            canvas.width = 320;
+            canvas.height = 240;
+            
+            frameInterval = setInterval(() => {
+                if (!isMonitoring || !stream) return;
+                
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const frameData = canvas.toDataURL('image/jpeg', 0.7);
+                socket.emit('frame', frameData);
+            }, 100); // 10 FPS to reduce server load
+        }
+
+        function stopMonitoring() {
+            isMonitoring = false;
+            if (frameInterval) {
+                clearInterval(frameInterval);
+                frameInterval = null;
+            }
+            stopVideoStream();
+            videoContainer.style.display = 'none';
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        }
+
+        function updateStatus(data) {
+            if (data.error) {
+                statusDiv.innerHTML = `<i class="bi bi-exclamation-triangle me-2"></i>${data.error}`;
+                statusDiv.className = 'h4 fw-semibold error';
+                return;
+            }
+
+            let statusClass = 'good';
+            let icon = 'bi-emoji-smile';
+            let text = 'Awake & Alert';
+
+            if (!data.face_detected) {
+                statusClass = 'warning';
+                icon = 'bi-question-circle';
+                text = 'No face detected';
+            } else if (data.status === 'fatigue_suspected') {
+                statusClass = 'danger';
+                icon = 'bi-emoji-dizzy';
+                text = `Fatigue suspected! (${data.closed_duration}s)`;
+            } else if (data.status === 'normal_blink') {
+                statusClass = 'blink';
+                icon = 'bi-eye';
+                text = 'Blink detected';
+            } else if (data.eyes_closed) {
+                statusClass = 'warning';
+                icon = 'bi-eye-slash';
+                text = `Eyes closed (${data.closed_duration}s)`;
+            }
+
+            statusDiv.innerHTML = `<i class="bi ${icon} me-2"></i>${text}`;
+            statusDiv.className = `h4 fw-semibold ${statusClass}`;
+        }
+
+        function showAlarm() {
+            alarmOverlay.classList.add('active');
+            if ('vibrate' in navigator) navigator.vibrate([200, 100, 200]);
+        }
+
+        function hideAlarm() {
+            alarmOverlay.classList.remove('active');
+        }
+
+        function displayStats(stats) {
+            const html = `
+                <h5 class="mb-3">Trip Statistics</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Total Alerts:</strong> ${stats.alert_summary?.total_alerts || 0}</p>
+                        <p><strong>Fatigue Alerts:</strong> ${stats.alert_summary?.fatigue_alerts || 0}</p>
+                        <p><strong>No Face Alerts:</strong> ${stats.alert_summary?.no_face_alerts || 0}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Max Duration:</strong> ${stats.alert_summary?.max_duration?.toFixed(2) || 0}s</p>
+                        <p><strong>Avg Duration:</strong> ${stats.alert_summary?.avg_duration?.toFixed(2) || 0}s</p>
+                    </div>
+                </div>
+            `;
+            statsPanel.innerHTML = html;
+            statsPanel.style.display = 'block';
+        }
+
+        // Button handlers
+        startBtn.addEventListener('click', async () => {
+            const success = await startCamera();
+            if (success) {
+                socket.emit('start_trip');
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+            }
+        });
+
+        stopBtn.addEventListener('click', () => {
+            socket.emit('end_trip', {});
+            stopMonitoring();
+            statusDiv.innerHTML = '<i class="bi bi-camera-video me-2"></i>Trip ended - camera off';
+            statusDiv.className = 'h4 fw-semibold ready';
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (tripId) {
+                socket.emit('end_trip', {});
+            }
+            stopMonitoring();
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            stopVideoStream();
+        });
+    </script>
+</body>
+</html>

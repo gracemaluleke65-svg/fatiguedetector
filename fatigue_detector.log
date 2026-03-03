@@ -1,0 +1,163 @@
+2026-03-03 13:21:50,672 - database - INFO - Database initialized successfully
+2026-03-03 13:21:50,693 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.26:5000
+2026-03-03 13:21:50,695 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-03 13:22:04,608 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:22:04] "GET / HTTP/1.1" 200 -
+2026-03-03 13:22:04,732 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:22:04] "GET /static/js/camera.js HTTP/1.1" 200 -
+2026-03-03 13:22:04,748 - __main__ - INFO - Client connected: SYJWPBh9FpS5oKIDAAAB
+2026-03-03 13:22:12,548 - __main__ - INFO - Trip started: 1 for session SYJWPBh9FpS5oKIDAAAB
+2026-03-03 13:22:30,179 - __main__ - WARNING - NO FACE ALARM: 1.03s (trip 1)
+2026-03-03 13:22:30,219 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:22:30] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-03 13:22:38,425 - __main__ - WARNING - NO FACE ALARM: 1.05s (trip 1)
+2026-03-03 13:22:42,668 - __main__ - WARNING - NO FACE ALARM: 1.06s (trip 1)
+2026-03-03 13:22:48,365 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 1)
+2026-03-03 13:23:01,150 - __main__ - WARNING - FATIGUE ALARM: 1.05s (trip 1)
+2026-03-03 13:23:06,207 - __main__ - WARNING - NO FACE ALARM: 1.05s (trip 1)
+2026-03-03 13:23:09,691 - __main__ - WARNING - NO FACE ALARM: 1.05s (trip 1)
+2026-03-03 13:23:13,895 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 1)
+2026-03-03 13:23:26,944 - __main__ - WARNING - NO FACE ALARM: 1.02s (trip 1)
+2026-03-03 13:23:31,651 - __main__ - WARNING - NO FACE ALARM: 1.03s (trip 1)
+2026-03-03 13:23:37,020 - __main__ - WARNING - NO FACE ALARM: 1.06s (trip 1)
+2026-03-03 13:23:41,114 - __main__ - WARNING - FATIGUE ALARM: 1.02s (trip 1)
+2026-03-03 13:23:44,377 - __main__ - WARNING - FATIGUE ALARM: 1.05s (trip 1)
+2026-03-03 13:23:47,173 - __main__ - WARNING - NO FACE ALARM: 1.07s (trip 1)
+2026-03-03 13:23:51,606 - __main__ - INFO - Trip ended: 1, duration: 1min
+2026-03-03 13:24:10,750 - __main__ - INFO - Client disconnected: SYJWPBh9FpS5oKIDAAAB
+2026-03-03 13:41:37,215 - database - INFO - Database initialized successfully
+2026-03-03 13:41:37,237 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.26:5000
+2026-03-03 13:41:37,237 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-03 13:41:42,073 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:41:42] "GET / HTTP/1.1" 200 -
+2026-03-03 13:41:42,123 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:41:42] "[33mGET /static/images/Shichabo.png HTTP/1.1[0m" 404 -
+2026-03-03 13:41:42,210 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:41:42] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 13:41:42,570 - __main__ - INFO - Client connected: YquaM4FsKqjLiRA9AAAB
+2026-03-03 13:42:06,189 - __main__ - INFO - Client disconnected: YquaM4FsKqjLiRA9AAAB
+2026-03-03 13:44:09,096 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:44:09] "GET / HTTP/1.1" 200 -
+2026-03-03 13:44:09,136 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:44:09] "[33mGET /static/images/Shichabo.png HTTP/1.1[0m" 404 -
+2026-03-03 13:44:09,152 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:44:09] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 13:44:09,277 - __main__ - INFO - Client connected: d_4rNdr_us9sv6QMAAAD
+2026-03-03 13:44:23,730 - __main__ - INFO - Client disconnected: d_4rNdr_us9sv6QMAAAD
+2026-03-03 13:47:22,386 - database - INFO - Database initialized successfully
+2026-03-03 13:47:22,404 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.26:5000
+2026-03-03 13:47:22,404 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-03 13:47:25,320 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:47:25] "GET / HTTP/1.1" 200 -
+2026-03-03 13:47:25,466 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:47:25] "GET /static/images/Shichabo.png HTTP/1.1" 200 -
+2026-03-03 13:47:25,478 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:47:25] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 13:47:25,893 - __main__ - INFO - Client connected: 44IDPoazxaegLZ22AAAB
+2026-03-03 13:47:31,571 - __main__ - INFO - Trip started: 1 for session 44IDPoazxaegLZ22AAAB
+2026-03-03 13:47:33,491 - __main__ - INFO - Trip ended: 1, duration: 0min
+2026-03-03 13:47:39,311 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:47:39] "GET / HTTP/1.1" 200 -
+2026-03-03 13:47:39,321 - __main__ - INFO - Client disconnected: 44IDPoazxaegLZ22AAAB
+2026-03-03 13:47:39,349 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:47:39] "[36mGET /static/images/Shichabo.png HTTP/1.1[0m" 304 -
+2026-03-03 13:47:39,357 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:47:39] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 13:47:39,376 - __main__ - INFO - Client connected: oUO_PNIPKRWZe_fKAAAD
+2026-03-03 13:48:01,812 - __main__ - INFO - Trip started: 2 for session oUO_PNIPKRWZe_fKAAAD
+2026-03-03 13:48:04,100 - __main__ - INFO - Trip ended: 2, duration: 0min
+2026-03-03 13:48:56,153 - __main__ - INFO - Trip started: 3 for session oUO_PNIPKRWZe_fKAAAD
+2026-03-03 13:49:01,686 - __main__ - INFO - Trip ended: 3, duration: 0min
+2026-03-03 13:49:04,925 - __main__ - INFO - Trip started: 4 for session oUO_PNIPKRWZe_fKAAAD
+2026-03-03 13:49:18,744 - __main__ - WARNING - NO FACE ALARM: 1.00s (trip 4)
+2026-03-03 13:49:18,779 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:49:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-03 13:49:22,309 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 4)
+2026-03-03 13:49:29,345 - __main__ - WARNING - FATIGUE ALARM: 1.03s (trip 4)
+2026-03-03 13:49:32,159 - __main__ - WARNING - FATIGUE ALARM: 1.05s (trip 4)
+2026-03-03 13:49:37,649 - __main__ - WARNING - NO FACE ALARM: 1.03s (trip 4)
+2026-03-03 13:49:45,233 - __main__ - INFO - Trip ended: 4, duration: 0min
+2026-03-03 13:51:07,004 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:51:07] "GET / HTTP/1.1" 200 -
+2026-03-03 13:51:07,017 - __main__ - INFO - Client disconnected: oUO_PNIPKRWZe_fKAAAD
+2026-03-03 13:51:07,049 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:51:07] "[36mGET /static/images/Shichabo.png HTTP/1.1[0m" 304 -
+2026-03-03 13:51:07,054 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:51:07] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 13:51:07,072 - __main__ - INFO - Client connected: tmqAgb_Fh0F8-snKAAAF
+2026-03-03 13:51:25,391 - __main__ - INFO - Trip started: 5 for session tmqAgb_Fh0F8-snKAAAF
+2026-03-03 13:51:36,420 - __main__ - WARNING - NO FACE ALARM: 1.03s (trip 5)
+2026-03-03 13:51:36,435 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:51:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-03 13:51:49,396 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 5)
+2026-03-03 13:51:55,660 - __main__ - WARNING - FATIGUE ALARM: 1.03s (trip 5)
+2026-03-03 13:52:11,481 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 5)
+2026-03-03 13:52:17,350 - __main__ - WARNING - FATIGUE ALARM: 1.03s (trip 5)
+2026-03-03 13:52:22,732 - __main__ - WARNING - NO FACE ALARM: 1.05s (trip 5)
+2026-03-03 13:52:39,075 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 5)
+2026-03-03 13:52:43,764 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 5)
+2026-03-03 13:52:51,259 - __main__ - WARNING - FATIGUE ALARM: 1.04s (trip 5)
+2026-03-03 13:52:55,274 - __main__ - WARNING - FATIGUE ALARM: 1.04s (trip 5)
+2026-03-03 13:52:58,761 - __main__ - WARNING - FATIGUE ALARM: 1.03s (trip 5)
+2026-03-03 13:53:05,607 - __main__ - INFO - Trip ended: 5, duration: 1min
+2026-03-03 13:58:51,795 - database - INFO - Database initialized successfully
+2026-03-03 13:58:51,816 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.26:5000
+2026-03-03 13:58:51,816 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-03 13:58:52,265 - __main__ - INFO - Client connected: obaeuch3mFRPg8Z6AAAB
+2026-03-03 13:59:00,806 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:59:00] "GET / HTTP/1.1" 200 -
+2026-03-03 13:59:00,969 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:59:00] "[36mGET /static/images/Shichabo.png HTTP/1.1[0m" 304 -
+2026-03-03 13:59:00,985 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:59:00] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 13:59:01,004 - __main__ - INFO - Client connected: 61jv1qJN9Tz2be_7AAAD
+2026-03-03 13:59:04,288 - __main__ - INFO - Trip started: 1 for session 61jv1qJN9Tz2be_7AAAD
+2026-03-03 13:59:12,105 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 1)
+2026-03-03 13:59:12,136 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 13:59:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-03 13:59:22,272 - __main__ - WARNING - NO FACE ALARM: 1.05s (trip 1)
+2026-03-03 13:59:32,059 - __main__ - WARNING - NO FACE ALARM: 1.08s (trip 1)
+2026-03-03 13:59:35,322 - __main__ - INFO - Trip ended: 1, duration: 0min
+2026-03-03 14:00:19,198 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:00:19] "GET / HTTP/1.1" 200 -
+2026-03-03 14:00:19,213 - __main__ - INFO - Client disconnected: 61jv1qJN9Tz2be_7AAAD
+2026-03-03 14:00:19,250 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:00:19] "[36mGET /static/images/Shichabo.png HTTP/1.1[0m" 304 -
+2026-03-03 14:00:19,254 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:00:19] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 14:00:19,279 - __main__ - INFO - Client connected: DDbF8vADoQFx23Y4AAAF
+2026-03-03 14:00:21,482 - __main__ - INFO - Trip started: 2 for session DDbF8vADoQFx23Y4AAAF
+2026-03-03 14:00:27,972 - __main__ - WARNING - NO FACE ALARM: 1.06s (trip 2)
+2026-03-03 14:00:27,981 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:00:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-03 14:00:34,626 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 2)
+2026-03-03 14:00:43,203 - __main__ - WARNING - NO FACE ALARM: 1.05s (trip 2)
+2026-03-03 14:00:51,203 - __main__ - WARNING - NO FACE ALARM: 1.06s (trip 2)
+2026-03-03 14:00:55,614 - __main__ - WARNING - NO FACE ALARM: 1.09s (trip 2)
+2026-03-03 14:01:03,794 - __main__ - INFO - Trip ended: 2, duration: 0min
+2026-03-03 14:05:02,438 - database - INFO - Database initialized successfully
+2026-03-03 14:05:02,459 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.26:5000
+2026-03-03 14:05:02,459 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-03 14:05:02,706 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:05:02] "GET / HTTP/1.1" 200 -
+2026-03-03 14:05:02,828 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:05:02] "[36mGET /static/images/Shichabo.png HTTP/1.1[0m" 304 -
+2026-03-03 14:05:02,960 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:05:02] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 14:05:02,973 - __main__ - INFO - Client connected: N6bo8FjR3c2LbBlSAAAB
+2026-03-03 14:07:10,188 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:07:10] "GET / HTTP/1.1" 200 -
+2026-03-03 14:07:10,206 - __main__ - INFO - Client disconnected: N6bo8FjR3c2LbBlSAAAB
+2026-03-03 14:07:10,243 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:07:10] "[36mGET /static/images/Shichabo.png HTTP/1.1[0m" 304 -
+2026-03-03 14:07:10,245 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:07:10] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 14:07:10,260 - __main__ - INFO - Client connected: ALC6mgFfZr-eDGnUAAAD
+2026-03-03 14:07:16,468 - __main__ - INFO - Trip started: 1 for session ALC6mgFfZr-eDGnUAAAD
+2026-03-03 14:07:25,751 - __main__ - WARNING - NO FACE ALARM: 1.04s (trip 1)
+2026-03-03 14:07:25,765 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:07:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-03 14:07:33,494 - __main__ - WARNING - NO FACE ALARM: 1.07s (trip 1)
+2026-03-03 14:07:38,066 - __main__ - WARNING - NO FACE ALARM: 1.07s (trip 1)
+2026-03-03 14:07:45,916 - __main__ - WARNING - NO FACE ALARM: 1.08s (trip 1)
+2026-03-03 14:07:57,934 - __main__ - WARNING - FATIGUE ALARM: 1.06s (trip 1)
+2026-03-03 14:08:02,296 - __main__ - WARNING - NO FACE ALARM: 1.07s (trip 1)
+2026-03-03 14:09:05,909 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:09:05] "GET / HTTP/1.1" 200 -
+2026-03-03 14:09:05,925 - __main__ - INFO - Client disconnected: ALC6mgFfZr-eDGnUAAAD
+2026-03-03 14:09:05,941 - __main__ - INFO - Auto-ended trip 1 for session ALC6mgFfZr-eDGnUAAAD
+2026-03-03 14:09:05,957 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:09:05] "[36mGET /static/images/Shichabo.png HTTP/1.1[0m" 304 -
+2026-03-03 14:09:05,959 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:09:05] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 14:09:05,976 - __main__ - INFO - Client connected: EZtuWCO982d4o5GRAAAF
+2026-03-03 14:09:26,105 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:09:26] "GET / HTTP/1.1" 200 -
+2026-03-03 14:09:26,117 - __main__ - INFO - Client disconnected: EZtuWCO982d4o5GRAAAF
+2026-03-03 14:09:26,149 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:09:26] "[36mGET /static/images/Shichabo.png HTTP/1.1[0m" 304 -
+2026-03-03 14:09:26,152 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:09:26] "[36mGET /static/js/camera.js HTTP/1.1[0m" 304 -
+2026-03-03 14:09:26,165 - __main__ - INFO - Client connected: lVmdsVsdNj_DlFAvAAAH
+2026-03-03 14:09:33,758 - __main__ - INFO - Trip started: 2 for session lVmdsVsdNj_DlFAvAAAH
+2026-03-03 14:09:36,961 - __main__ - WARNING - NO FACE ALARM: 1.05s (trip 2)
+2026-03-03 14:09:36,977 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2026 14:09:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-03 14:09:42,942 - __main__ - WARNING - NO FACE ALARM: 1.05s (trip 2)
+2026-03-03 14:09:50,504 - __main__ - WARNING - NO FACE ALARM: 1.06s (trip 2)
+2026-03-03 14:10:15,193 - __main__ - WARNING - NO FACE ALARM: 1.07s (trip 2)
+2026-03-03 14:10:33,483 - __main__ - INFO - Client disconnected: lVmdsVsdNj_DlFAvAAAH
+2026-03-03 14:10:33,505 - __main__ - INFO - Auto-ended trip 2 for session lVmdsVsdNj_DlFAvAAAH
